@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 export default class Wizard extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class Wizard extends Component {
             address: "",
             city: "",
             state: "",
-            zip:0
+            zip:""
         }
     }
 
@@ -18,6 +19,18 @@ export default class Wizard extends Component {
             [e.target.name]: e.target.value
         })
     }
+
+    addHouse(){
+        const { name, address, city, state, zip } = this.state;
+        axios.post('/api/houses', {name, address, city, state, zip})
+        .then( res => {
+            console.log(res);
+            this.location.replace('http://localhost:3000/#/')
+        })
+        .catch( err => {
+            console.log(err);
+        });
+    };
 
     render() {
         const { name, address, city, state, zip } = this.state;
@@ -47,6 +60,7 @@ export default class Wizard extends Component {
                     </div>
                 </form>
                 <Link to="/">
+                    <button onClick={() => this.addHouse()}>Complete</button>
                     <button>Cancel</button>
                 </Link>
             </div>
