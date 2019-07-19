@@ -9,8 +9,17 @@ export default class Dashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            houses:[]
+            houses:[{
+                id: '',
+                name: '',
+                img: '',
+                address: '',
+                city: '',
+                state: '',
+                zip:''
+            }]
         }
+        this.getHouses=this.getHouses.bind(this)
     }
 
     componentDidMount(){
