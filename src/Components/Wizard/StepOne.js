@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import store from '/src/store.js'
 
 export default class Wizard extends Component {
     constructor(props) {
